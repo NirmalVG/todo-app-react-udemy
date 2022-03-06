@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core";
+import {
+    Box,
+    AppBar,
+    Toolbar,
+    IconButton,
+    Typography,
+    Container,
+    Paper,
+} from "@material-ui/core";
+import TodoAdder from "./components/todo-adder";
+import TodosContainer from "./components/todos-container";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const useStyles = makeStyles((theme) => ({
+    root: {},
+    appContainer: {
+        paddingLeft: 100,
+        paddingRight: 100,
+        marginTop: 100,
+    },
+    wrapper: {
+        textAlign: "center",
+        width: "100%",
+    },
+}));
+
+export default function MSKTodos() {
+    const classes = useStyles();
+    return (
+        <Box className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit">
+                        <img
+                            src="logo.png"
+                            style={{ width: "50px" }}
+                            alt="MSK logo"
+                        />
+                    </IconButton>
+                    <Typography variant="h5">Todos</Typography>
+                </Toolbar>
+            </AppBar>
+            <Container className={classes.appContainer}>
+                <Paper className={classes.wrapper} elevation={0}>
+                    <TodoAdder />
+                    <TodosContainer />
+                </Paper>
+            </Container>
+        </Box>
+    );
 }
-
-export default App;
